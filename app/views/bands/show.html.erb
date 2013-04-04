@@ -1,0 +1,13 @@
+<h1><%= @band.name %></h1>
+
+<p><%= image_tag @band.image.url if @band.image.exists? %></p>
+
+  <ol>
+  <% @band.albums.each do |album|%>
+  <%= image_tag album.image.url %>
+  <li><%= link_to album.name, album_url(album) %></li>
+  <% end %>
+  </ol>
+
+<%= link_to "Bands Home", bands_url, :class => "btn btn-primary"%>
+<%= link_to "Add Album", new_band_album_url(@band), :class => "btn btn-primary"%>

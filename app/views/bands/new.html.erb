@@ -1,0 +1,27 @@
+<%=form_for(@band, html: {multipart: true}) do |f|%>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+ <br>
+  <h4> Members: </h4>
+
+  <% Artist.all.each do |artist| %>
+  <%=
+    check_box_tag(
+    "band[artist_ids][]",
+    artist.id,
+    @band.artist_ids.include?(artist.id),
+    :id => "band_artist_ids_#{artist.id}"
+    )
+    %>
+
+    <%= label_tag "band_artist_ids_#{artist.id}", artist.name%>
+    <br>
+  <% end %>
+  <%= hidden_field_tag "band[artist_ids][]" %>
+  <p>
+    <%= f.label :image, "Attach an Image" %><br />
+    <%= f.file_field :image %>
+  </p>
+
+  <%= f.submit "Create band"%>
+<% end %>

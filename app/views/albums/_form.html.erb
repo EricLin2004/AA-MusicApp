@@ -1,0 +1,24 @@
+<%=form_for(@album, html: {multipart: true}) do |f|%>
+  <%=f.label :name %>
+  <%=f.text_field :name %>
+
+  <br>
+  <%=f.label :band_id, "Band" %>
+  <%= f.collection_select(:band_id, Band.all, :id, :name, :selected => @selected) %>
+
+  <br>
+  <%=f.label :recorded %>
+  <br>
+  <%=f.label :recorded_studio, "Studio" %>
+  <%= f.radio_button :recorded, 'Studio', :value => 'studio'%>
+  <br>
+  <%=f.label :recorded_live, "Live" %>
+  <%= f.radio_button :recorded, 'Live', :value => 'live' %>
+
+  <p>
+    <%= f.label :image, "Attach an Image" %><br />
+    <%= f.file_field :image %>
+  </p>
+
+  <%= f.submit %>
+<% end %>

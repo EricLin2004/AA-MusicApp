@@ -1,0 +1,19 @@
+<%= form_for(@track) do |f|%>
+<%=f.label :name %>
+<%=f.text_field :name %>
+
+<br>
+<%=f.label :album_id, "Album" %>
+<%= f.collection_select(:album_id, Album.all, :id, :name) %>
+
+
+<br>
+<%=f.label :regular_bonus_bonus, "Bonus Track" %>
+<%= f.radio_button :regular_bonus, 'Bonus', :value => 'bonus'%>
+<br>
+<%=f.label :regular_bonus_regular, "Regular Track" %>
+<%= f.radio_button :regular_bonus, 'Regular', :value => 'regular' %>
+
+<br>
+<%= f.submit "Create Track" %>
+<% end %>

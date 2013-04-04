@@ -1,0 +1,21 @@
+<h1><%= @artist.name %></h1>
+
+<%# unless @band.artists.empty? %>
+<!--  <h2> Artists </h2>
+  <ul>
+  <%# @band.artists do |artist|%>
+    <li><%#= artist.name %></li>
+  <%# end %>
+  </ul>
+<%# end %> -->
+
+<h3> Member of: </h3>
+  <ul>
+  <% @artist.bands.each do |band|%>
+    <li><%= link_to band.name, band_url(band) %></li>
+  <% end %>
+  </ul>
+
+<%= link_to "Bands Home", bands_url%>
+
+<%= link_to "Edit Artist", edit_artist_url(@artist) %>
