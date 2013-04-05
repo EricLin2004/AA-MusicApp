@@ -1,6 +1,10 @@
 class AlbumsController < ApplicationController
   def index
-    @albums = Album.all
+    if params[:order] == 'band_name'
+      @albums = Album.joins(:band).order('bands.name')
+    else
+      @albums = Album.all
+    end
   end
 
   def show
@@ -13,8 +17,13 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @album = Album.create(params[:album])
-    redirect_to album_url(@album)
+    @album = Album.new(params[:album])
+    if @album.save
+      redirect_to album_url(@album)
+    else
+      flash.notice = @album.errors.full_messages
+      render :new
+    end
   end
 
   def edit

@@ -1,4 +1,5 @@
 class Band < ActiveRecord::Base
+  validates :name, :presence => true
   attr_accessible :name, :artist_ids, :image
   has_many :albums
   has_many :band_memberships
